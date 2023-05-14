@@ -15,18 +15,74 @@
 </head>
 
 
-<body>
+<body id="body">
     <header>
         <nav><ul class="nav-links">
             <li class="icon"><i class="fa-solid fa-book"></i> bookList</li>
-            <li class="login">
-                <button>Login</button>
+            <li>
+                <button class="login">Login</button>
             </li>
         </ul></nav>
     </header>
     <main>
-        <button onclick="createBook()" class="add"><i class="fa-solid fa-plus"></i> Add A Book</button>
-        <section class="cards"> </section>
+        <button onclick="createBook()" id="add"><i class="fa-solid fa-plus"></i> Add A Book</button>
+        <section id="cards">
+            <div class="book-entry">
+                <div class="info">
+                <h2>Title</h2>
+                <p>Dorans</p>
+                 </div>
+                 <div class="info">
+                 <h2>Author</h2>
+                <p>L.L O Legends</p>
+                 </div>
+                  <div class="info-2">
+                    <div>
+                <h2>Pages</h2>
+                 <p>287</p>
+                 </div>
+                 <button class="read">
+                    Read
+                </button>
+                </div>
+            </div>
+       
+        
+            
+            
+
+            
+        </section>
+        <div class="popup">
+            <div class="close-btn">
+                <i class="fa-solid fa-x"></i>
+            </div>
+            <div class="form">
+                <h2>Book Info</h2>
+                <div class="form-element">
+                    <label for="title">Title</label>
+                    <input type="text" id="title" placeholder="Title of book">
+                </div>
+                <div class="form-element">
+                    <label for="author">Author</label>
+                    <input type="text" id="author" placeholder="Author of book">
+                </div>
+                <div class="form-element">
+                    <label for="pages">Pages</label>
+                    <input type="number" id="pages" placeholder="Number of pages">
+                </div>
+                <div class="form-element">
+                    <input type="checkbox" id="read">
+                    <label for="read">Read?</label>
+                </div>
+                <div class="form-element">
+                    <button>Submit</button>
+                </div>
+               
+
+            </div>
+
+        </div>
     </main>
     <footer>
         <p class="footer-text">Created by Matthew Yung
