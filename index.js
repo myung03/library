@@ -3,26 +3,10 @@ function Book(title, author, pages, read) {
   this.author = author;
   this.pages = pages;
   this.read = read;
-  this.info = function helper() {
-    const finished = this.helper();
-    return `${this.title} by ${this.author}, ${this.pages} pages, ${finished}`;
-  };
-  this.helper = function helper() {
-    if (read) {
-      return 'read';
-    } return 'not read yet';
-  };
 }
 
-const myLibrary = [new Book('Demon Slayer', 'Muzan', 302, true), new Book('Hatchet', 'Gary Paulsen', 195, true)];
+const myLibrary = [];
 
-function bHelp(book, button) {
-  if (book.read) {
-    button.classList.remove('active');
-  } else {
-    button.classList.add('active');
-  }
-}
 function initBook(book) {
   const titleh = document.createElement('h2');
   titleh.innerHTML = 'Title';
@@ -53,9 +37,22 @@ function initBook(book) {
   const button = document.createElement('button');
   button.innerHTML = 'Read';
   button.classList.add('read');
-  bHelp(book, button);
+  if (!book.read) {
+    button.innerHTML = 'Not Read';
+    button.classList.add('active');
+  }
   button.addEventListener('click', () => {
-    bHelp(button);
+    if (book.read) {
+      // eslint-disable-next-line no-param-reassign
+      book.read = false;
+      button.innerHTML = 'Not Read';
+      button.classList.add('active');
+    } else if (!book.read) {
+      // eslint-disable-next-line no-param-reassign
+      book.read = true;
+      button.innerHTML = 'Read';
+      button.classList.remove('active');
+    }
   });
 
   const bottomdiv = document.createElement('div');
@@ -73,12 +70,10 @@ function initBook(book) {
 
 function addBookToLibrary(book) {
   myLibrary.push(book);
-  myLibrary.forEach((b) => {
-    const obj = initBook(b);
-    obj.classList.add('book-entry');
-    const grid = document.getElementById('cards');
-    grid.appendChild(obj);
-  });
+  const obj = initBook(book);
+  obj.classList.add('book-entry');
+  const grid = document.getElementById('cards');
+  grid.appendChild(obj);
 }
 
 // eslint-disable-next-line no-unused-vars
@@ -105,9 +100,7 @@ submit.addEventListener('click', () => {
   popup.classList.remove('active');
 });
 
-myLibrary.forEach((b) => {
-  const obj = initBook(b);
-  obj.classList.add('book-entry');
-  const grid = document.getElementById('cards');
-  grid.appendChild(obj);
-});
+const ds = new Book('Demon Slayer', 'Muzan', 302, true);
+const ht = new Book('Hatchet', 'Gary Paulsen', 195, false);
+addBookToLibrary(ds);
+addBookToLibrary(ht);
